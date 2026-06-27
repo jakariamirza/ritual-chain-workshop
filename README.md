@@ -23,6 +23,15 @@ This fork implements the required commit-reveal assignment for the Ritual Academ
 7. `judgeAll` evaluates the batch of revealed submissions.
 8. The owner calls `finalizeWinner` with a valid revealed-submission index and the reward is paid.
 
+## Ritual Testnet Deployment
+
+- Network: Ritual testnet
+- Chain ID: `1979`
+- Deployer: `0x4fa0620840a222f1015785e2223cb852a86a3718`
+- AIJudge contract: `0x0F733D5Af9fbe9314D86117A8589e00B91bdc7C7`
+- Deploy transaction: `0x843ef59032c6ee135e030627ed4a8090ed2c7fd16c49a374983cc82811590c84`
+- Block: `38388141`
+
 ## Architecture Note
 
 The required track keeps answers hidden during the submission phase, but plaintext exists on-chain during the reveal phase. On-chain storage contains commitment hashes before the deadline and revealed plaintext answers after the deadline. The web app stores the answer and salt in local browser storage so the participant can reveal later.
@@ -55,4 +64,3 @@ Current local result:
 ## Reflection
 
 Commitments, bounty metadata, deadlines, rewards, and final payouts should be public because participants need a verifiable process and sponsors need accountability. Raw answers should stay hidden during the submission phase so later participants cannot copy or lightly improve earlier work. In the required commit-reveal version, answers become public during reveal, which is acceptable for a simple EVM-compatible design but not ideal for highly sensitive bounties. AI should help rank submissions against a published rubric, summarize strengths and weaknesses, and flag obvious plagiarism or invalid answers. A human bounty owner should still finalize the winner because reward decisions can involve context, edge cases, and values that are not fully captured by an LLM score. The system should make AI reasoning auditable without letting AI become the only authority over funds. The fairest design is public process, private submissions until the right phase, AI-assisted review, and human final accountability.
-
